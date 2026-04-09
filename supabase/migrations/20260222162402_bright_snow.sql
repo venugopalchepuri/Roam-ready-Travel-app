@@ -17,7 +17,7 @@
 */
 
 -- Enable RLS for all tables
-ALTER TABLE auth.users ENABLE ROW LEVEL SECURITY;
+
 
 -- Users table (extends Supabase auth.users)
 CREATE TABLE IF NOT EXISTS public.profiles (
@@ -129,107 +129,107 @@ ALTER TABLE recommendation_rules ENABLE ROW LEVEL SECURITY;
 -- RLS Policies
 
 -- Profiles policies
-CREATE POLICY "Users can view own profile"
-  ON profiles FOR SELECT
-  TO authenticated
-  USING (auth.uid() = id);
+-- CREATE POLICY "Users can view own profile"
+--   ON profiles FOR SELECT
+--   TO authenticated
+--   USING (auth.uid() = id);
 
-CREATE POLICY "Users can update own profile"
-  ON profiles FOR UPDATE
-  TO authenticated
-  USING (auth.uid() = id);
+-- CREATE POLICY "Users can update own profile"
+--   ON profiles FOR UPDATE
+--   TO authenticated
+--   USING (auth.uid() = id);
 
-CREATE POLICY "Users can insert own profile"
-  ON profiles FOR INSERT
-  TO authenticated
-  WITH CHECK (auth.uid() = id);
+-- CREATE POLICY "Users can insert own profile"
+--   ON profiles FOR INSERT
+--   TO authenticated
+--   WITH CHECK (auth.uid() = id);
 
--- Trips policies
-CREATE POLICY "Users can view own trips"
-  ON trips FOR SELECT
-  TO authenticated
-  USING (auth.uid() = user_id);
+-- -- Trips policies
+-- CREATE POLICY "Users can view own trips"
+--   ON trips FOR SELECT
+--   TO authenticated
+--   USING (auth.uid() = user_id);
 
-CREATE POLICY "Users can insert own trips"
-  ON trips FOR INSERT
-  TO authenticated
-  WITH CHECK (auth.uid() = user_id);
+-- CREATE POLICY "Users can insert own trips"
+--   ON trips FOR INSERT
+--   TO authenticated
+--   WITH CHECK (auth.uid() = user_id);
 
-CREATE POLICY "Users can update own trips"
-  ON trips FOR UPDATE
-  TO authenticated
-  USING (auth.uid() = user_id);
+-- CREATE POLICY "Users can update own trips"
+--   ON trips FOR UPDATE
+--   TO authenticated
+--   USING (auth.uid() = user_id);
 
-CREATE POLICY "Users can delete own trips"
-  ON trips FOR DELETE
-  TO authenticated
-  USING (auth.uid() = user_id);
+-- CREATE POLICY "Users can delete own trips"
+--   ON trips FOR DELETE
+--   TO authenticated
+--   USING (auth.uid() = user_id);
 
--- Itineraries policies
-CREATE POLICY "Users can access itineraries for own trips"
-  ON itineraries FOR ALL
-  TO authenticated
-  USING (
-    EXISTS (
-      SELECT 1 FROM trips 
-      WHERE trips.id = itineraries.trip_id 
-      AND trips.user_id = auth.uid()
-    )
-  );
+-- -- Itineraries policies
+-- CREATE POLICY "Users can access itineraries for own trips"
+--   ON itineraries FOR ALL
+--   TO authenticated
+--   USING (
+--     EXISTS (
+--       SELECT 1 FROM trips 
+--       WHERE trips.id = itineraries.trip_id 
+--       AND trips.user_id = auth.uid()
+--     )
+--   );
 
--- Checklists policies
-CREATE POLICY "Users can access checklists for own trips"
-  ON checklists FOR ALL
-  TO authenticated
-  USING (
-    EXISTS (
-      SELECT 1 FROM trips 
-      WHERE trips.id = checklists.trip_id 
-      AND trips.user_id = auth.uid()
-    )
-  );
+-- -- Checklists policies
+-- CREATE POLICY "Users can access checklists for own trips"
+--   ON checklists FOR ALL
+--   TO authenticated
+--   USING (
+--     EXISTS (
+--       SELECT 1 FROM trips 
+--       WHERE trips.id = checklists.trip_id 
+--       AND trips.user_id = auth.uid()
+--     )
+--   );
 
--- Budget policies
-CREATE POLICY "Users can access budgets for own trips"
-  ON budgets FOR ALL
-  TO authenticated
-  USING (
-    EXISTS (
-      SELECT 1 FROM trips 
-      WHERE trips.id = budgets.trip_id 
-      AND trips.user_id = auth.uid()
-    )
-  );
+-- -- Budget policies
+-- CREATE POLICY "Users can access budgets for own trips"
+--   ON budgets FOR ALL
+--   TO authenticated
+--   USING (
+--     EXISTS (
+--       SELECT 1 FROM trips 
+--       WHERE trips.id = budgets.trip_id 
+--       AND trips.user_id = auth.uid()
+--     )
+--   );
 
--- Preparedness score policies
-CREATE POLICY "Users can access preparedness scores for own trips"
-  ON preparedness_score FOR ALL
-  TO authenticated
-  USING (
-    EXISTS (
-      SELECT 1 FROM trips 
-      WHERE trips.id = preparedness_score.trip_id 
-      AND trips.user_id = auth.uid()
-    )
-  );
+-- -- Preparedness score policies
+-- CREATE POLICY "Users can access preparedness scores for own trips"
+--   ON preparedness_score FOR ALL
+--   TO authenticated
+--   USING (
+--     EXISTS (
+--       SELECT 1 FROM trips 
+--       WHERE trips.id = preparedness_score.trip_id 
+--       AND trips.user_id = auth.uid()
+--     )
+--   );
 
--- Emergency contacts policies
-CREATE POLICY "Users can access emergency contacts for own trips"
-  ON emergency_contacts FOR ALL
-  TO authenticated
-  USING (
-    EXISTS (
-      SELECT 1 FROM trips 
-      WHERE trips.id = emergency_contacts.trip_id 
-      AND trips.user_id = auth.uid()
-    )
-  );
+-- -- Emergency contacts policies
+-- CREATE POLICY "Users can access emergency contacts for own trips"
+--   ON emergency_contacts FOR ALL
+--   TO authenticated
+--   USING (
+--     EXISTS (
+--       SELECT 1 FROM trips 
+--       WHERE trips.id = emergency_contacts.trip_id 
+--       AND trips.user_id = auth.uid()
+--     )
+--   );
 
--- Recommendation rules policies (read-only for all authenticated users)
-CREATE POLICY "Authenticated users can read recommendation rules"
-  ON recommendation_rules FOR SELECT
-  TO authenticated
-  USING (true);
+-- -- Recommendation rules policies (read-only for all authenticated users)
+-- CREATE POLICY "Authenticated users can read recommendation rules"
+--   ON recommendation_rules FOR SELECT
+--   TO authenticated
+--   USING (true);
 
 -- Insert default recommendation rules
 INSERT INTO recommendation_rules (min_distance, max_distance, priority_type, recommended_mode, recommended_platform, base_cost_per_km, estimated_time_per_km) VALUES

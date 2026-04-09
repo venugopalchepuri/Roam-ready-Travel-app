@@ -100,7 +100,7 @@ const SignupPage: React.FC = () => {
                 type="text"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-green-500 outline-none"
+                className="w-full px-4 py-2 rounded-lg border bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-green-500 outline-none !text-white"
                 placeholder="Your name"
                 required
                 disabled={loading}
@@ -115,8 +115,7 @@ const SignupPage: React.FC = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-green-500 outline-none"
-                placeholder="your@email.com"
+                className="w-full px-4 py-2 rounded-lg border bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-green-500 outline-none !text-white"                placeholder="your@email.com"
                 required
                 disabled={loading}
               />
@@ -130,7 +129,7 @@ const SignupPage: React.FC = () => {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-green-500 outline-none"
+                className="w-full px-4 py-2 rounded-lg border bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-green-500 outline-none !text-white"
                 placeholder="At least 6 characters"
                 required
                 disabled={loading}
@@ -145,7 +144,7 @@ const SignupPage: React.FC = () => {
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-green-500 outline-none"
+                className="w-full px-4 py-2 rounded-lg border bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-green-500 outline-none !text-white"
                 placeholder="Repeat password"
                 required
                 disabled={loading}

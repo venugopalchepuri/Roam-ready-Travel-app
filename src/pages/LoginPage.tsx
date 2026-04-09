@@ -11,6 +11,7 @@ const LoginPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const { signIn } = useAuth();
   const navigate = useNavigate();
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -81,7 +82,7 @@ const LoginPage: React.FC = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full px-4 py-2 rounded-lg border bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-green-500 outline-none !text-white"
                 placeholder="your@email.com"
                 required
                 disabled={loading}
@@ -96,7 +97,7 @@ const LoginPage: React.FC = () => {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full px-4 py-2 rounded-lg border bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-green-500 outline-none !text-white"
                 placeholder="Enter your password"
                 required
                 disabled={loading}
@@ -118,6 +119,7 @@ const LoginPage: React.FC = () => {
               )}
             </button>
           </form>
+          
 
           {/* LINKS */}
           <div className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">

@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS users (
   created_at timestamptz DEFAULT now()
 );
 
-ALTER TABLE users ENABLE ROW LEVEL SECURITY;
+
 
 CREATE POLICY "Users can view own profile"
   ON users FOR SELECT

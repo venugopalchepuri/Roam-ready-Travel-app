@@ -609,7 +609,7 @@ CREATE TABLE IF NOT EXISTS shared_itineraries (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   trip_id uuid REFERENCES trips(id) ON DELETE CASCADE NOT NULL,
   user_id uuid REFERENCES users(id) ON DELETE CASCADE NOT NULL,
-  share_token text UNIQUE NOT NULL DEFAULT encode(gen_random_bytes(16), 'hex'),
+  share_token text UNIQUE NOT NULL DEFAULT gen_random_uuid(),
   is_public boolean DEFAULT false,
   password_protected boolean DEFAULT false,
   password_hash text,
